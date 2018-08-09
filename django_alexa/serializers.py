@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import logging
 from rest_framework import serializers
 from .internal import validate_app_ids, validate_char_limit

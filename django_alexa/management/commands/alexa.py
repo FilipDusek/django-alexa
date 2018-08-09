@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from django.core.management import call_command
 from ..base import AlexaBaseCommand
 

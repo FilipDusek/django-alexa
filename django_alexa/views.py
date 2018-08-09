@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import logging
 import traceback
 from django.conf import settings
@@ -52,7 +52,7 @@ class ASKView(APIView):
         app = ALEXA_APP_IDS[session['application']['applicationId']]
         if validated_data["request"]["type"] == "IntentRequest":
             intent_name = validated_data["request"]["intent"]["name"]
-            for slot, slot_data in validated_data["request"]["intent"].get("slots", {}).items():
+            for slot, slot_data in list(validated_data["request"]["intent"].get("slots", {}).items()):
                 slot_key = slot_data["name"]
                 try:
                     slot_value = slot_data['value']

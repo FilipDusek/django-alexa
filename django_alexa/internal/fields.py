@@ -1,5 +1,5 @@
 '''These are the only fields supported by the Alexa skills kit'''
-from __future__ import absolute_import
+
 
 
 class AmazonSlots(object):

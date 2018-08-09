@@ -5,6 +5,7 @@ from imp import reload
 from datetime import datetime, timedelta
 import pytz
 import os
+import imp
 
 
 class TestValidation:
@@ -21,7 +22,7 @@ class TestValidation:
 
     @mock.patch.dict(os.environ, {'ALEXA_APP_ID_DEFAULT': 'valid_app_id_default'})
     def test_validate_app_ids(self):
-        reload(validation)
+        imp.reload(validation)
         valid_app_id = 'valid_app_id_default'
         validation.validate_app_ids(valid_app_id)
 

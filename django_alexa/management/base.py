@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from django.core.management.base import BaseCommand
 from ..internal import IntentsSchema
 
@@ -15,7 +15,7 @@ class AlexaBaseCommand(BaseCommand):
         do_all_apps = options.get('do_all_apps')
         if len(app_labels) == 0:
             if do_all_apps:
-                app_labels = IntentsSchema.apps.keys()
+                app_labels = list(IntentsSchema.apps.keys())
             else:
                 app_labels = ["base"]
         for app in app_labels:

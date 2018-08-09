@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import logging
 from string import Formatter
 from .exceptions import InternalError
@@ -22,7 +22,7 @@ class IntentsSchema():
     @classmethod
     def get_intent(cls, app, intent):
         key_name = app + "." + intent
-        if key_name not in cls.intents.keys():
+        if key_name not in list(cls.intents.keys()):
             if intent in DEFAULT_INTENTS:
                 return cls.get_intent("base", intent)
             else:
@@ -55,7 +55,7 @@ class IntentsSchema():
                 slots = None
             else:
                 s = slots()
-                for field_name, field in s.get_fields().items():
+                for field_name, field in list(s.get_fields().items()):
                     if issubclass(field.__class__, AmazonField) is not True:
                         msg = "'{0}' on slot '{1}' is not a valid alexa slot field type"
                         msg = msg.format(field_name, s.__class__.__name__)
@@ -75,7 +75,7 @@ class IntentsSchema():
             _, slot = cls.get_intent(app, intent_name)
             if slot:
                 s = slot()
-                for field_name, field in s.get_fields().items():
+                for field_name, field in list(s.get_fields().items()):
                     slot_type = field.get_slot_name()
                     if slot_type is None:
                         msg = "Intent '{0}.{1}' slot '{2}' does not have a valid slot_type"
@@ -101,7 +101,7 @@ class IntentsSchema():
             fields = []
             if slot:
                 s = slot()
-                fields = s.get_fields().keys()
+                fields = list(s.get_fields().keys())
             docstring = """"""
             if func.__doc__:
                 if "---\n" in func.__doc__:
@@ -128,7 +128,7 @@ class IntentsSchema():
             func, slot = cls.get_intent(app, intent_name)
             if slot:
                 s = slot()
-                for field_name, field in s.get_fields().items():
+                for field_name, field in list(s.get_fields().items()):
                     if issubclass(field.__class__, AmazonCustom):
                         msg = "\n" + field.get_slot_name() + ":\n"
                         for choice in field.get_choices():

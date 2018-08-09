@@ -14,7 +14,7 @@ class AmazonCustom(fields.AmazonCustom, serializers.ChoiceField):
         return self.label
 
     def get_choices(self):
-        return [six.text_type(key) for key in self.choices.keys()]
+        return [six.text_type(key) for key in list(self.choices.keys())]
 
 
 class AmazonLiteral(fields.AmazonLiteral, serializers.CharField):
