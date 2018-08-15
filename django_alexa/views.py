@@ -74,7 +74,7 @@ class ASKView(APIView):
         # before we do anything dangerous so that we can properly send exception
         # reponses and the DRF request object doesn't allow you to access the
         # body after you have accessed the "data" stream
-        body = request.body
+        body = request.body.decode('utf-8')
         ResponseBuilder.set_version(request.data['version'])
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
